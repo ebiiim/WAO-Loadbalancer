@@ -1,33 +1,36 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-name: [name]
+  name: tensorflow-serving
 spec:
-replicas: 1
-selector:
+  replicas: 4 # TODO change to 12
+  selector:
     matchLabels:
-    app: [name]
-template:
+      app: tensorflow-serving
+  template:
     metadata:
-    labels:
-        app: [name]
+      labels:
+        app: tensorflow-serving
     spec:
-    containers:
-    - command:
+      containers:
+      - command:
         - /usr/bin/tf_serving_entrypoint.sh
-        - --model_config_file=[model]
-        name: [name]
-        image: [tensorflow_image]
+        - --model_config_file=/models/konohana.config
+        name: tensorflow-serving
+        image: 10.11.0.10:5000/predict-konohana-pc
         ports:
         - containerPort: 8500
+      nodeSelector:
+        kubernetes.io/os: linux
 ---
 apiVersion: v1
 kind: Service
 metadata:
-name: tensorflow-service
+  name: tensorflow-service
 spec:
-ports:
-- port: 8500
+  ports:
+  - port: 8500
     targetPort: 8500
-selector:
-    app: [name]
+  selector:
+    app: tensorflow-serving
+  type: ClusterIP

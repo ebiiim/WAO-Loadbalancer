@@ -1,47 +1,47 @@
 apiVersion: apps/v1
 kind: DaemonSet
 metadata:
-annotations:
+  annotations:
     deprecated.daemonset.template.generation: "1"
-creationTimestamp: "2020-08-25T04:31:09Z"
-generation: 1
-labels:
+  creationTimestamp: "2020-08-25T04:31:09Z"
+  generation: 1
+  labels:
     k8s-app: kube-proxy
-managedFields:
-- apiVersion: apps/v1
+  managedFields:
+  - apiVersion: apps/v1
     fieldsType: FieldsV1
     fieldsV1:
-    f:metadata:
+      f:metadata:
         f:annotations:
-        .: {}
-        f:deprecated.daemonset.template.generation: {}
+          .: {}
+          f:deprecated.daemonset.template.generation: {}
         f:labels:
-        .: {}
-        f:k8s-app: {}
-    f:spec:
+          .: {}
+          f:k8s-app: {}
+      f:spec:
         f:revisionHistoryLimit: {}
         f:selector:
-        f:matchLabels:
+          f:matchLabels:
             .: {}
             f:k8s-app: {}
         f:template:
-        f:metadata:
+          f:metadata:
             f:labels:
-            .: {}
-            f:k8s-app: {}
-        f:spec:
+              .: {}
+              f:k8s-app: {}
+          f:spec:
             f:containers:
-            k:{"name":"kube-proxy"}:
+              k:{"name":"kube-proxy"}:
                 .: {}
                 f:command: {}
                 f:env:
-                .: {}
-                k:{"name":"NODE_NAME"}:
+                  .: {}
+                  k:{"name":"NODE_NAME"}:
                     .: {}
                     f:name: {}
                     f:valueFrom:
-                    .: {}
-                    f:fieldRef:
+                      .: {}
+                      f:fieldRef:
                         .: {}
                         f:apiVersion: {}
                         f:fieldPath: {}
@@ -50,30 +50,30 @@ managedFields:
                 f:name: {}
                 f:resources: {}
                 f:securityContext:
-                .: {}
-                f:privileged: {}
+                  .: {}
+                  f:privileged: {}
                 f:terminationMessagePath: {}
                 f:terminationMessagePolicy: {}
                 f:volumeMounts:
-                .: {}
-                k:{"mountPath":"/lib/modules"}:
+                  .: {}
+                  k:{"mountPath":"/lib/modules"}:
                     .: {}
                     f:mountPath: {}
                     f:name: {}
                     f:readOnly: {}
-                k:{"mountPath":"/run/xtables.lock"}:
+                  k:{"mountPath":"/run/xtables.lock"}:
                     .: {}
                     f:mountPath: {}
                     f:name: {}
-                k:{"mountPath":"/var/lib/kube-proxy"}:
+                  k:{"mountPath":"/var/lib/kube-proxy"}:
                     .: {}
                     f:mountPath: {}
                     f:name: {}
             f:dnsPolicy: {}
             f:hostNetwork: {}
             f:nodeSelector:
-            .: {}
-            f:kubernetes.io/os: {}
+              .: {}
+              f:kubernetes.io/os: {}
             f:priorityClassName: {}
             f:restartPolicy: {}
             f:schedulerName: {}
@@ -83,40 +83,40 @@ managedFields:
             f:terminationGracePeriodSeconds: {}
             f:tolerations: {}
             f:volumes:
-            .: {}
-            k:{"name":"kube-proxy"}:
+              .: {}
+              k:{"name":"kube-proxy"}:
                 .: {}
                 f:configMap:
-                .: {}
-                f:defaultMode: {}
+                  .: {}
+                  f:defaultMode: {}
+                  f:name: {}
                 f:name: {}
-                f:name: {}
-            k:{"name":"lib-modules"}:
+              k:{"name":"lib-modules"}:
                 .: {}
                 f:hostPath:
-                .: {}
-                f:path: {}
-                f:type: {}
+                  .: {}
+                  f:path: {}
+                  f:type: {}
                 f:name: {}
-            k:{"name":"xtables-lock"}:
+              k:{"name":"xtables-lock"}:
                 .: {}
                 f:hostPath:
-                .: {}
-                f:path: {}
-                f:type: {}
+                  .: {}
+                  f:path: {}
+                  f:type: {}
                 f:name: {}
         f:updateStrategy:
-        f:rollingUpdate:
+          f:rollingUpdate:
             .: {}
             f:maxUnavailable: {}
-        f:type: {}
+          f:type: {}
     manager: kubeadm
     operation: Update
     time: "2020-08-25T04:31:09Z"
-- apiVersion: apps/v1
+  - apiVersion: apps/v1
     fieldsType: FieldsV1
     fieldsV1:
-    f:status:
+      f:status:
         f:currentNumberScheduled: {}
         f:desiredNumberScheduled: {}
         f:numberAvailable: {}
@@ -127,88 +127,88 @@ managedFields:
     manager: kube-controller-manager
     operation: Update
     time: "2021-01-22T08:11:20Z"
-name: kube-proxy
-namespace: kube-system
-resourceVersion: "40739228"
-selfLink: /apis/apps/v1/namespaces/kube-system/daemonsets/kube-proxy
-uid: d09a4ddb-5165-486d-a318-76592b127d4a
+  name: kube-proxy
+  namespace: kube-system
+  resourceVersion: "40739228"
+  selfLink: /apis/apps/v1/namespaces/kube-system/daemonsets/kube-proxy
+  uid: d09a4ddb-5165-486d-a318-76592b127d4a
 spec:
-revisionHistoryLimit: 10
-selector:
+  revisionHistoryLimit: 10
+  selector:
     matchLabels:
-    k8s-app: kube-proxy
-template:
+      k8s-app: kube-proxy
+  template:
     metadata:
-    creationTimestamp: null
-    labels:
+      creationTimestamp: null
+      labels:
         k8s-app: kube-proxy
     spec:
-    containers:
-    - command:
+      containers:
+      - command:
         - /usr/local/bin/kube-proxy
         - --config=/var/lib/kube-proxy/config.conf
         - --hostname-override=$(NODE_NAME)
         - --v=5
         env:
         - name: NODE_NAME
-        valueFrom:
+          valueFrom:
             fieldRef:
-            apiVersion: v1
-            fieldPath: spec.nodeName
-        image: [repository-address]/[image-name]
+              apiVersion: v1
+              fieldPath: spec.nodeName
+        image: 10.11.0.10:5000/kube-proxy
         imagePullPolicy: IfNotPresent
         name: kube-proxy
         resources: {}
         securityContext:
-        privileged: true
+          privileged: true
         terminationMessagePath: /dev/termination-log
         terminationMessagePolicy: File
         volumeMounts:
         - mountPath: /var/lib/kube-proxy
-        name: kube-proxy
+          name: kube-proxy
         - mountPath: /run/xtables.lock
-        name: xtables-lock
+          name: xtables-lock
         - mountPath: /lib/modules
-        name: lib-modules
-        readOnly: true
-    dnsPolicy: ClusterFirst
-    hostNetwork: true
-    nodeSelector:
+          name: lib-modules
+          readOnly: true
+      dnsPolicy: ClusterFirst
+      hostNetwork: true
+      nodeSelector:
         kubernetes.io/os: linux
-    priorityClassName: system-node-critical
-    restartPolicy: Always
-    schedulerName: default-scheduler
-    securityContext: {}
-    serviceAccount: kube-proxy
-    serviceAccountName: kube-proxy
-    terminationGracePeriodSeconds: 30
-    tolerations:
-    - key: CriticalAddonsOnly
+      priorityClassName: system-node-critical
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      serviceAccount: kube-proxy
+      serviceAccountName: kube-proxy
+      terminationGracePeriodSeconds: 30
+      tolerations:
+      - key: CriticalAddonsOnly
         operator: Exists
-    - operator: Exists
-    volumes:
-    - configMap:
-        defaultMode: 420
+      - operator: Exists
+      volumes:
+      - configMap:
+          defaultMode: 420
+          name: kube-proxy
         name: kube-proxy
-        name: kube-proxy
-    - hostPath:
-        path: /run/xtables.lock
-        type: FileOrCreate
+      - hostPath:
+          path: /run/xtables.lock
+          type: FileOrCreate
         name: xtables-lock
-    - hostPath:
-        path: /lib/modules
-        type: ""
+      - hostPath:
+          path: /lib/modules
+          type: ""
         name: lib-modules
-updateStrategy:
+  updateStrategy:
     rollingUpdate:
-    maxUnavailable: 1
+      maxUnavailable: 1
     type: RollingUpdate
 status:
-currentNumberScheduled: 13
-desiredNumberScheduled: 13
-numberAvailable: 8
-numberMisscheduled: 0
-numberReady: 8
-numberUnavailable: 5
-observedGeneration: 1
-updatedNumberScheduled: 13
+  currentNumberScheduled: 13
+  desiredNumberScheduled: 13
+  numberAvailable: 8
+  numberMisscheduled: 0
+  numberReady: 8
+  numberUnavailable: 5
+  observedGeneration: 1
+  updatedNumberScheduled: 13
