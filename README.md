@@ -2,7 +2,7 @@
 
 ---
 
-This document shows the steps to build and deploy kube-proxy with a power minimization policy.
+This document shows the steps to build and deploy kube-proxy with power minimization policy.
 
 ---
 
@@ -15,7 +15,7 @@ This document shows the steps to build and deploy kube-proxy with a power minimi
 * local docker repository  
 * docker image of tensorflow serving containing power consumption model of each node.  
 
-## Build kube-proxy witj power minimization policy
+## Build kube-proxy with power minimization policy
 
 1. Download the Kubernetes source code
 
@@ -53,14 +53,14 @@ Since there are multiple files required for deployment, it is recommended to cre
 
 1. Create a Docker image for kube-proxy
 
-    Create `Dockerfile` with the following contentes.
+    Create `Dockerfile` with the following contents.
     The original image has been confirmed and may be up to date.
     ``` Dockerfile
     FROM k8s.gcr.io/kube-proxy:v1.18.8
     COPY ./proxy /usr/local/bin/kube-proxy
     ```
     Copy the `proxy` built in the above steps to the same directory as the `Dockerfile`.  
-    Create an image and push it to the your local repository.
+    Create an image and push it to your local repository.
     ```
     docker build -t [repository-address]/[image-name] .
     docker image push [repository-address]/[image-name]
@@ -80,17 +80,17 @@ Since there are multiple files required for deployment, it is recommended to cre
         ```
         kubectl create clusterrolebinding default-view --clusterrole=view --serviceaccount=kube-system:kube-proxy
         ```
-    * Start metrics-server ([Kubernetes Metrics Server](https://github.com/kubernetes-sigs/metrics-server))
+    * Launch metrics-server ([Kubernetes Metrics Server](https://github.com/kubernetes-sigs/metrics-server))
         ```
         kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
         ```
-    * Start tensorflow
+    * Launch tensorflow
 
         ```
         kubectl create -f tensorflow-server-dep.yaml
         ```
     * Labeling
-        Give each node the following label.
+        Give each node the following label;
         * ambient/max : Maximum ambinet temperature in celsius
         * ambient/min : Mimimum ambinet temperature in celsius
         * cpu1/max : Maximum CPU1 temperature in celsius
@@ -101,7 +101,7 @@ Since there are multiple files required for deployment, it is recommended to cre
         * tensorflow/port: Port number of tensorflow serving
         * tensorflow/name: model name of tensorflow serving
 
-3. Start kube-proxy
+3. Launch kube-proxy
 
     ```
     Stop the currently running kube-proxy
