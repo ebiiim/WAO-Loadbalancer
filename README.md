@@ -84,7 +84,7 @@ Since there are multiple files required for deployment, it is recommended to cre
         ```
     * Launch metrics-server ([Kubernetes Metrics Server](https://github.com/kubernetes-sigs/metrics-server))
         ```
-        kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
+        kubectl apply -f kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/download/v0.6.1/components.yaml
         ```
     * Launch tensorflow
 
