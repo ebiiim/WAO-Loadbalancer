@@ -1,3 +1,6 @@
+> [!IMPORTANT]
+> This repository is no longer being maintained. Please use the new [WAO LB](https://github.com/waok8s/wao-loadbalancer) instead.
+
 # Kube-proxy with built-in power minimization policy
 
 ---
